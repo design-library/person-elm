@@ -51,7 +51,7 @@ public class AccountController {
 	@Autowired
 	private AccountService accountService;
 	
-	@RequestMapping(method=POST)
+	@RequestMapping(path="/login", method=POST)
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
 	public AccountModel login(
