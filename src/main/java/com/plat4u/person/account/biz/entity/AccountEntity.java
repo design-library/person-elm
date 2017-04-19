@@ -18,10 +18,10 @@
  */
 package com.plat4u.person.account.biz.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
-
-import org.springframework.data.annotation.Id;
 
 /**
  * AccountEntity
@@ -34,8 +34,10 @@ import org.springframework.data.annotation.Id;
 public class AccountEntity {
 	
 	@Id
+	@Column(name = "id")
 	private String id;
 	
+	@Column(name = "password")	
 	private String password;
 
 	/**

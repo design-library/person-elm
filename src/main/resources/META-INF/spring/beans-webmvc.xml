@@ -42,6 +42,9 @@
 		</mvc:message-converters>
   </mvc:annotation-driven>
   
+  <bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+         <property name="defaultContentType" value="application/json" />
+  </bean>
   <bean id="validator"
      class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
      <property name="validationMessageSource" ref="messageSource" />
