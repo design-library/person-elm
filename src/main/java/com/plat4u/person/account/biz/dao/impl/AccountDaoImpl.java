@@ -20,7 +20,7 @@ package com.plat4u.person.account.biz.dao.impl;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
@@ -44,7 +44,7 @@ public class AccountDaoImpl implements AccountDao {
 	 */
 	public AccountEntity findOne(AccountEntity entity) {
 		
-		Query query = entityManager.createNamedQuery("Account.findOne", AccountEntity.class);
+		TypedQuery<AccountEntity> query = entityManager.createNamedQuery("Account.findOne", AccountEntity.class);
 		query.setParameter("id", entity.getId());
 		query.setParameter("password", entity.getPassword());
 		AccountEntity accountEntityRtn = (AccountEntity)query.getSingleResult();

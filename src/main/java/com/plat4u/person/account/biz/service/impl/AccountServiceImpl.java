@@ -18,6 +18,8 @@
  */
 package com.plat4u.person.account.biz.service.impl;
 
+import javax.persistence.NoResultException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -50,10 +52,14 @@ public class AccountServiceImpl implements AccountService {
 		accountEntity.setPassword(account.password().stretch());
 		
 		// execute.
-		AccountEntity accountEntityRtn = accountDao.findOne(accountEntity);
-		
+		AccountEntity accountEntityRtn = null;
+		try {
+			accountEntityRtn = accountDao.findOne(accountEntity);
+		} catch (NoResultException e) {
+			throw new AuthenticationException(e.getMessage(), e);
+		}
 		// create Account
-		Account accountRtn = new Account(accountEntityRtn.getId(), accountEntityRtn.getPassword());
+		Account accountRtn = new Account(accountEntityRtn.getId(), account.password().mask());
 		
 		return accountRtn;
 	}

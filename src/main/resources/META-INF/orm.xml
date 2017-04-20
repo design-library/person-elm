@@ -6,10 +6,10 @@
                             http://xmlns.jcp.org/xml/ns/persistence/orm_2_1.xsd">
   <named-query name="Account.findOne">
     <query><![CDATA[
-     SELECT a.id, a.password
+     SELECT a
        FROM AccountEntity a
-      WHERE a.id=:id
-        AND a.password=:password
+      WHERE a.id = :id
+        AND a.password = :password
     ]]></query>
   </named-query>
 </entity-mappings>

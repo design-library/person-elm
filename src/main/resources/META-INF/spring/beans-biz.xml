@@ -43,9 +43,8 @@
   <context:component-scan base-package="com.plat4u.person.account.biz.entity"/>
   <context:component-scan base-package="com.plat4u.person.exception"/>
   
-<!-- 
-  <context:property-placeholder location="classpath:jdbc.properties"/>
- -->
+  <context:property-placeholder location="classpath:META-INF/jdbc.properties"/>
+
 <!--   
   <bean id="transactionManager"
       class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
