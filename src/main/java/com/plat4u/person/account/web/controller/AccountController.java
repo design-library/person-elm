@@ -25,7 +25,6 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
-import org.hibernate.validator.constraints.Email;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -66,10 +65,8 @@ public class AccountController {
 		Account account = new Account(
 				model.getAccountId(), model.getPassword());
 		Account accountRtn = accountService.authenticate(account);
-		
-		AccountModel modelRtn = new AccountModel();
-		modelRtn.setAccountId(accountRtn.id().id());
-		modelRtn.setPassword(accountRtn.password().mask());
+
+		AccountModel modelRtn = toAccountModel(accountRtn);
 		
 		return modelRtn;
 		
@@ -87,9 +84,7 @@ public class AccountController {
 				model.getAccountId(), model.getPassword());
 		Account accountRtn = accountService.create(account);
 
-		AccountModel modelRtn = new AccountModel();
-		modelRtn.setAccountId(accountRtn.id().id());
-		modelRtn.setPassword(accountRtn.password().mask());
+		AccountModel modelRtn = toAccountModel(accountRtn);
 		
 		return modelRtn;
 		
@@ -110,9 +105,7 @@ public class AccountController {
 					accountId, model.getPassword());
 			Account accountRtn = accountService.updatePassword(account);
 
-			AccountModel modelRtn = new AccountModel();
-			modelRtn.setAccountId(accountRtn.id().id());
-			modelRtn.setPassword(accountRtn.password().mask());
+			AccountModel modelRtn = toAccountModel(accountRtn);
 					
 			return modelRtn;
 			
@@ -121,6 +114,13 @@ public class AccountController {
 			
 		}
 		
+	}
+	
+	private AccountModel toAccountModel(Account account) {
+		AccountModel model = new AccountModel();
+		model.setAccountId(account.id().id());
+		model.setPassword(account.password().mask());
+		return model;
 	}
 
 }
