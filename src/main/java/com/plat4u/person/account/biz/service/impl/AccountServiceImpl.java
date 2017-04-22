@@ -68,16 +68,32 @@ public class AccountServiceImpl implements AccountService {
 	 * @see com.plat4u.person.account.biz.service.AccountService#create(com.plat4u.person.account.biz.domain.Account)
 	 */
 	public Account create(Account account) {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+		
+		AccountEntity accountEntity = new AccountEntity();
+		accountEntity.setId(account.id().id());
+		accountEntity.setPassword(account.password().stretch());
+		
+		AccountEntity accountEntityRtn = accountDao.insert(accountEntity);
+		
+		Account accountRtn = new Account(accountEntityRtn.getId(), account.password().mask());
+		
+		return accountRtn;
 	}
 
 	/* (非 Javadoc)
 	 * @see com.plat4u.person.account.biz.service.AccountService#updatePassword(com.plat4u.person.account.biz.domain.Account)
 	 */
 	public Account updatePassword(Account account) {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+		
+		AccountEntity accountEntity = new AccountEntity();
+		accountEntity.setId(account.id().id());
+		accountEntity.setPassword(account.password().stretch());
+		
+		AccountEntity accountEntityRtn = accountDao.update(accountEntity);
+		
+		Account accountRtn = new Account(accountEntityRtn.getId(), account.password().mask());
+		
+		return accountRtn;
 	}
 
 }

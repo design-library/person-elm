@@ -19,14 +19,17 @@
 package com.plat4u.person.account.web.controller;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
+import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 
 import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.hibernate.validator.constraints.Email;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,6 +40,7 @@ import com.plat4u.person.account.biz.domain.Account;
 import com.plat4u.person.account.biz.service.AccountService;
 import com.plat4u.person.account.web.model.AccountModel;
 import com.plat4u.person.exception.AuthenticationException;
+import com.plat4u.person.exception.PathVariableException;
 
 /**
  * AccountController
@@ -59,15 +63,63 @@ public class AccountController {
 			@Valid @RequestBody AccountModel model) throws AuthenticationException 
 	{
 		
-		Account accountRtn = accountService.authenticate(
-				new Account(model.getAccountId(), 
-						model.getPassword()));
+		Account account = new Account(
+				model.getAccountId(), model.getPassword());
+		Account accountRtn = accountService.authenticate(account);
 		
 		AccountModel modelRtn = new AccountModel();
 		modelRtn.setAccountId(accountRtn.id().id());
 		modelRtn.setPassword(accountRtn.password().mask());
 		
 		return modelRtn;
+		
+	}
+	
+	@RequestMapping(method=POST)
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public AccountModel create(
+			@RequestHeader Map<String, String> requestHeader, 
+			@Valid @RequestBody AccountModel model)
+	{
+		
+		Account account = new Account(
+				model.getAccountId(), model.getPassword());
+		Account accountRtn = accountService.create(account);
+
+		AccountModel modelRtn = new AccountModel();
+		modelRtn.setAccountId(accountRtn.id().id());
+		modelRtn.setPassword(accountRtn.password().mask());
+		
+		return modelRtn;
+		
+	}
+	
+	@RequestMapping(path="/{accountId}", method=PUT)
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public AccountModel updatePassword(
+			@PathVariable String accountId,
+			@RequestHeader Map<String, String> requestHeader, 
+			@Valid @RequestBody AccountModel model) throws PathVariableException
+	{
+		
+		if (model.getAccountId().equals(accountId)) {
+			
+			Account account = new Account(
+					accountId, model.getPassword());
+			Account accountRtn = accountService.updatePassword(account);
+
+			AccountModel modelRtn = new AccountModel();
+			modelRtn.setAccountId(accountRtn.id().id());
+			modelRtn.setPassword(accountRtn.password().mask());
+					
+			return modelRtn;
+			
+		} else {
+			throw new PathVariableException("Pathvariable is worng.");
+			
+		}
 		
 	}
 

@@ -52,4 +52,36 @@ public class AccountDaoImpl implements AccountDao {
 		return accountEntityRtn;
 	}
 
+	/* (”ñ Javadoc)
+	 * @see com.plat4u.person.account.biz.dao.AccountDao#insert(com.plat4u.person.account.biz.entity.AccountEntity)
+	 */
+	public AccountEntity insert(AccountEntity entity) {
+		
+		entityManager.persist(entity);
+		entityManager.flush();
+		
+		TypedQuery<AccountEntity> query = entityManager.createNamedQuery("Account.findOne", AccountEntity.class);
+		query.setParameter("id", entity.getId());
+		query.setParameter("password", entity.getPassword());
+		AccountEntity accountEntityRtn = (AccountEntity)query.getSingleResult();
+		
+		return accountEntityRtn;
+	}
+
+	/* (”ñ Javadoc)
+	 * @see com.plat4u.person.account.biz.dao.AccountDao#update(com.plat4u.person.account.biz.entity.AccountEntity)
+	 */
+	public AccountEntity update(AccountEntity entity) {
+		
+		entityManager.merge(entity);
+		entityManager.flush();
+		
+		TypedQuery<AccountEntity> query = entityManager.createNamedQuery("Account.findOne", AccountEntity.class);
+		query.setParameter("id", entity.getId());
+		query.setParameter("password", entity.getPassword());
+		AccountEntity accountEntityRtn = (AccountEntity)query.getSingleResult();
+		
+		return accountEntityRtn;
+	}
+
 }

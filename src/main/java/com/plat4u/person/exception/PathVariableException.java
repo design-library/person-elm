@@ -16,22 +16,24 @@
  *  You should have received a copy of the GNU General Public License
  *  along with plat4u.com.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.plat4u.person.account.biz.dao;
-
-import com.plat4u.person.account.biz.entity.AccountEntity;
+package com.plat4u.person.exception;
 
 /**
- * AccountDao
+ * PathVariableException
  *
  * @author plat4u.com
  * @version 1.0
  */
-public interface AccountDao {
+public class PathVariableException extends Throwable {
 	
-	public AccountEntity findOne(AccountEntity entity);
+	private static final long serialVersionUID = 1L;
+
+	public PathVariableException(String msg) {
+		super(msg);
+	}
 	
-	public AccountEntity insert(AccountEntity entity);
-	
-	public AccountEntity update(AccountEntity entity);
+	public PathVariableException(String msg, Throwable t) {
+		super(msg, t);
+	}
 
 }

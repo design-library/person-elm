@@ -35,6 +35,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.plat4u.person.exception.AuthenticationException;
 import com.plat4u.person.exception.Errors;
+import com.plat4u.person.exception.PathVariableException;
 
 /**
  * ExceptionControllerAdvice
@@ -67,6 +68,22 @@ public class ExceptionControllerAdvice {
 			errors.add("400", message);
 			
 		}
+		return errors;
+	}
+
+	@ExceptionHandler
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	@ResponseBody
+	public Errors handleException(PathVariableException e) {
+		Errors errors = new Errors();
+		String defaultMessage = "Bad Request. " + e.getMessage();
+		String message = messageSource.getMessage(
+				"com.plat4u.person.account.biz.service.AccountController.updatePassword", 
+				null, 
+				defaultMessage, 
+				LocaleContextHolder.getLocale());
+		errors.add("400", message);
+		
 		return errors;
 	}
 

@@ -34,33 +34,42 @@
       http://www.springframework.org/schema/jee/spring-jee-4.0.xsd
       http://www.springframework.org/schema/aop
       http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
-      
-  <mvc:annotation-driven validator="validator" content-negotiation-manager="contentNegotiationManager">
+	
+	<mvc:annotation-driven validator="validator" content-negotiation-manager="contentNegotiationManager">
 		<mvc:path-matching registered-suffixes-only="true" />
 		<mvc:message-converters>
 			<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
 		</mvc:message-converters>
-  </mvc:annotation-driven>
-  
-  <bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
-         <property name="defaultContentType" value="application/json" />
-  </bean>
-  <bean id="validator"
-     class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
-     <property name="validationMessageSource" ref="messageSource" />
-  </bean>
-  
-  <mvc:resources mapping="/resources/**" location="/resources/" />
+	</mvc:annotation-driven>
+      
+	<context:component-scan base-package="com.plat4u.person.account.web.controller"/>
+	<context:component-scan base-package="com.plat4u.person.account.web.model"/>
+	<context:component-scan base-package="com.plat4u.person.exception"/>
+	
+	<mvc:resources mapping="/resources/**" location="/resources/" />
 
-  <bean id="messageSource"
-      class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-    <property name="basename" value="classpath:/META-INF/i18n/messages"/>
-  </bean>
+	<bean id="messageSource"
+			class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basename" value="classpath:/META-INF/i18n/messages"/>
+	</bean>
+      
+	<bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+		<property name="ignoreAcceptHeader" value="false"/>
+		<property name="defaultContentType" value="application/json" />
+		<property name="favorPathExtension" value="false" />
+		<property name="mediaTypes">
+			<map>
+				<entry key="json" value="application/json" />
+				<entry key="xml" value="application/xml" />
+			</map>
+		</property>
+	</bean>
   
-  <context:component-scan base-package="com.plat4u.person.account.web.controller"/>
-  <context:component-scan base-package="com.plat4u.person.account.web.model"/>
-  <context:component-scan base-package="com.plat4u.person.exception"/>
+	<bean id="validator"
+			class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+		<property name="validationMessageSource" ref="messageSource" />
+	</bean>
   
-  <aop:aspectj-autoproxy />
+	<aop:aspectj-autoproxy />
     
 </beans>
