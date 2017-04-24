@@ -20,12 +20,14 @@ package com.plat4u.person.account.biz.dao.impl;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
 import com.plat4u.person.account.biz.dao.AccountDao;
 import com.plat4u.person.account.biz.entity.AccountEntity;
+import com.plat4u.person.exception.DuplicateException;
 
 /**
  * AccountDaoImpl
@@ -44,7 +46,7 @@ public class AccountDaoImpl implements AccountDao {
 	 */
 	public AccountEntity findOne(AccountEntity entity) {
 		
-		TypedQuery<AccountEntity> query = entityManager.createNamedQuery("Account.findOne", AccountEntity.class);
+		TypedQuery<AccountEntity> query = entityManager.createNamedQuery("AccountEntity.findOne", AccountEntity.class);
 		query.setParameter("id", entity.getId());
 		query.setParameter("password", entity.getPassword());
 		AccountEntity accountEntityRtn = (AccountEntity)query.getSingleResult();
@@ -55,12 +57,20 @@ public class AccountDaoImpl implements AccountDao {
 	/* (”ñ Javadoc)
 	 * @see com.plat4u.person.account.biz.dao.AccountDao#insert(com.plat4u.person.account.biz.entity.AccountEntity)
 	 */
-	public AccountEntity insert(AccountEntity entity) {
+	public AccountEntity insert(AccountEntity entity) throws DuplicateException {
 		
-		entityManager.persist(entity);
-		entityManager.flush();
-		
-		TypedQuery<AccountEntity> query = entityManager.createNamedQuery("Account.findOne", AccountEntity.class);
+		Query existsCheckQuery = entityManager.createNamedQuery("AccountEntity.count");
+		existsCheckQuery.setParameter("id", entity.getId());
+		existsCheckQuery.setParameter("password", entity.getPassword());
+		Long countOfEntity = (Long)existsCheckQuery.getSingleResult();
+		if (countOfEntity > 0) {
+			throw new DuplicateException("Double registration. " + entity.getId());
+			
+		} else {
+			entityManager.persist(entity);
+			entityManager.flush();
+		}		
+		TypedQuery<AccountEntity> query = entityManager.createNamedQuery("AccountEntity.findOne", AccountEntity.class);
 		query.setParameter("id", entity.getId());
 		query.setParameter("password", entity.getPassword());
 		AccountEntity accountEntityRtn = (AccountEntity)query.getSingleResult();
@@ -76,7 +86,7 @@ public class AccountDaoImpl implements AccountDao {
 		entityManager.merge(entity);
 		entityManager.flush();
 		
-		TypedQuery<AccountEntity> query = entityManager.createNamedQuery("Account.findOne", AccountEntity.class);
+		TypedQuery<AccountEntity> query = entityManager.createNamedQuery("AccountEntity.findOne", AccountEntity.class);
 		query.setParameter("id", entity.getId());
 		query.setParameter("password", entity.getPassword());
 		AccountEntity accountEntityRtn = (AccountEntity)query.getSingleResult();

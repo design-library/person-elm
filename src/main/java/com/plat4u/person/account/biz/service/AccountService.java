@@ -20,6 +20,7 @@ package com.plat4u.person.account.biz.service;
 
 import com.plat4u.person.account.biz.domain.Account;
 import com.plat4u.person.exception.AuthenticationException;
+import com.plat4u.person.exception.DuplicateException;
 
 /**
  * AccountService
@@ -41,8 +42,9 @@ public interface AccountService {
 	 * 
 	 * @param account
 	 * @return
+	 * @throws DuplicateException
 	 */
-	public Account create(Account account);
+	public Account create(Account account) throws DuplicateException;
 	
 	/**
 	 * 

@@ -28,6 +28,7 @@ import com.plat4u.person.account.biz.domain.Account;
 import com.plat4u.person.account.biz.entity.AccountEntity;
 import com.plat4u.person.account.biz.service.AccountService;
 import com.plat4u.person.exception.AuthenticationException;
+import com.plat4u.person.exception.DuplicateException;
 
 /**
  * AccountServiceImpl
@@ -67,14 +68,13 @@ public class AccountServiceImpl implements AccountService {
 	/* (”ñ Javadoc)
 	 * @see com.plat4u.person.account.biz.service.AccountService#create(com.plat4u.person.account.biz.domain.Account)
 	 */
-	public Account create(Account account) {
+	public Account create(Account account) throws  DuplicateException {
 		
 		AccountEntity accountEntity = new AccountEntity();
 		accountEntity.setId(account.id().id());
 		accountEntity.setPassword(account.password().stretch());
 		
 		AccountEntity accountEntityRtn = accountDao.insert(accountEntity);
-		
 		Account accountRtn = new Account(accountEntityRtn.getId(), account.password().mask());
 		
 		return accountRtn;

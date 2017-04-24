@@ -34,6 +34,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.plat4u.person.exception.AuthenticationException;
+import com.plat4u.person.exception.DuplicateException;
 import com.plat4u.person.exception.Errors;
 import com.plat4u.person.exception.PathVariableException;
 
@@ -83,6 +84,22 @@ public class ExceptionControllerAdvice {
 				defaultMessage, 
 				LocaleContextHolder.getLocale());
 		errors.add("400", message);
+		
+		return errors;
+	}
+
+	@ExceptionHandler
+	@ResponseStatus(HttpStatus.CONFLICT)
+	@ResponseBody
+	public Errors handleException(DuplicateException e) {
+		Errors errors = new Errors();
+		String defaultMessage = "Conflict. " + e.getMessage();
+		String message = messageSource.getMessage(
+				"com.plat4u.person.account.biz.service.AccountController.create", 
+				null, 
+				defaultMessage, 
+				LocaleContextHolder.getLocale());
+		errors.add("409", message);
 		
 		return errors;
 	}

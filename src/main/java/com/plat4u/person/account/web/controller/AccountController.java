@@ -39,6 +39,7 @@ import com.plat4u.person.account.biz.domain.Account;
 import com.plat4u.person.account.biz.service.AccountService;
 import com.plat4u.person.account.web.model.AccountModel;
 import com.plat4u.person.exception.AuthenticationException;
+import com.plat4u.person.exception.DuplicateException;
 import com.plat4u.person.exception.PathVariableException;
 
 /**
@@ -77,7 +78,7 @@ public class AccountController {
 	@ResponseBody
 	public AccountModel create(
 			@RequestHeader Map<String, String> requestHeader, 
-			@Valid @RequestBody AccountModel model)
+			@Valid @RequestBody AccountModel model) throws DuplicateException
 	{
 		
 		Account account = new Account(

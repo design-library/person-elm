@@ -19,6 +19,7 @@
 package com.plat4u.person.account.biz.dao;
 
 import com.plat4u.person.account.biz.entity.AccountEntity;
+import com.plat4u.person.exception.DuplicateException;
 
 /**
  * AccountDao
@@ -30,7 +31,7 @@ public interface AccountDao {
 	
 	public AccountEntity findOne(AccountEntity entity);
 	
-	public AccountEntity insert(AccountEntity entity);
+	public AccountEntity insert(AccountEntity entity) throws DuplicateException;
 	
 	public AccountEntity update(AccountEntity entity);
 
