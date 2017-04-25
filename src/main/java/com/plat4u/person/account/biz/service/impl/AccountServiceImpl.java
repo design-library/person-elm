@@ -49,7 +49,7 @@ public class AccountServiceImpl implements AccountService {
 		
 		// create AccountEntity.
 		AccountEntity accountEntity = new AccountEntity();
-		accountEntity.setId(account.id().id());
+		accountEntity.setId(account.id());
 		accountEntity.setPassword(account.password().stretch());
 		
 		// execute.
@@ -71,7 +71,7 @@ public class AccountServiceImpl implements AccountService {
 	public Account create(Account account) throws  DuplicateException {
 		
 		AccountEntity accountEntity = new AccountEntity();
-		accountEntity.setId(account.id().id());
+		accountEntity.setId(account.id());
 		accountEntity.setPassword(account.password().stretch());
 		
 		AccountEntity accountEntityRtn = accountDao.insert(accountEntity);
@@ -86,7 +86,7 @@ public class AccountServiceImpl implements AccountService {
 	public Account updatePassword(Account account) {
 		
 		AccountEntity accountEntity = new AccountEntity();
-		accountEntity.setId(account.id().id());
+		accountEntity.setId(account.id());
 		accountEntity.setPassword(account.password().stretch());
 		
 		AccountEntity accountEntityRtn = accountDao.update(accountEntity);

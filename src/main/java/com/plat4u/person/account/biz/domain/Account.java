@@ -39,8 +39,8 @@ public class Account implements Serializable {
 		this.password = password;
 	}
 	
-	public Id id() {
-		return new Id(id);
+	public String id() {
+		return id;
 	}
 	
 	public Password password() {

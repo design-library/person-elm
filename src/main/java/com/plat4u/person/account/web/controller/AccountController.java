@@ -119,7 +119,7 @@ public class AccountController {
 	
 	private AccountModel toAccountModel(Account account) {
 		AccountModel model = new AccountModel();
-		model.setAccountId(account.id().id());
+		model.setAccountId(account.id());
 		model.setPassword(account.password().mask());
 		return model;
 	}
