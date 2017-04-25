@@ -64,7 +64,7 @@ public class AccountController {
 	{
 		
 		Account account = new Account(
-				model.getAccountId(), model.getPassword());
+				model.getId(), model.getPassword());
 		Account accountRtn = accountService.authenticate(account);
 
 		AccountModel modelRtn = toAccountModel(accountRtn);
@@ -82,7 +82,7 @@ public class AccountController {
 	{
 		
 		Account account = new Account(
-				model.getAccountId(), model.getPassword());
+				model.getId(), model.getPassword());
 		Account accountRtn = accountService.create(account);
 
 		AccountModel modelRtn = toAccountModel(accountRtn);
@@ -91,19 +91,19 @@ public class AccountController {
 		
 	}
 	
-	@RequestMapping(path="/{accountId}", method=PUT)
+	@RequestMapping(path="/{id}", method=PUT)
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
 	public AccountModel updatePassword(
-			@PathVariable String accountId,
+			@PathVariable String id,
 			@RequestHeader Map<String, String> requestHeader, 
 			@Valid @RequestBody AccountModel model) throws PathVariableException
 	{
 		
-		if (model.getAccountId().equals(accountId)) {
+		if (model.getId().equals(id)) {
 			
 			Account account = new Account(
-					accountId, model.getPassword());
+					id, model.getPassword());
 			Account accountRtn = accountService.updatePassword(account);
 
 			AccountModel modelRtn = toAccountModel(accountRtn);
@@ -119,7 +119,7 @@ public class AccountController {
 	
 	private AccountModel toAccountModel(Account account) {
 		AccountModel model = new AccountModel();
-		model.setAccountId(account.id());
+		model.setId(account.id());
 		model.setPassword(account.password().mask());
 		return model;
 	}

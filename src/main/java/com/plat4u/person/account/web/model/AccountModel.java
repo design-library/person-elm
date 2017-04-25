@@ -37,7 +37,7 @@ public class AccountModel {
 	@NotEmpty
 	@Length(max=256)
 	@Email
-	private String accountId;
+	private String id;
 	
 	/** password*/
 	@NotNull
@@ -46,19 +46,19 @@ public class AccountModel {
 	private String password;
 
 	/**
-	 * Get the accountId .
-	 * @return accountId
+	 * Get the id .
+	 * @return id
 	 */
-	public String getAccountId() {
-		return accountId;
+	public String getId() {
+		return id;
 	}
 
 	/**
-	 * Set the accountId.
-	 * @param accountId
+	 * Set the id.
+	 * @param id
 	 */
-	public void setAccountId(String accountId) {
-		this.accountId = accountId;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	/**
