@@ -20,4 +20,20 @@
         AND a.password = :password
     ]]></query>
   </named-query>
+  <named-query name="PasswordHistoryEntity.count">
+    <query><![CDATA[
+     SELECT COUNT(ph) 
+       FROM PasswordHistoryEntity ph
+      WHERE ph.account_id = :accountId
+        AND ph.password = :password
+    ]]></query>
+  </named-query>
+  <named-query name="PasswordHistoryEntity.findByAccountIdAndPassword">
+    <query><![CDATA[
+     SELECT ph
+       FROM PasswordHistoryEntity ph
+      WHERE ph.account_id = :accountId
+        AND ph.password = :password
+    ]]></query>
+  </named-query>
 </entity-mappings>

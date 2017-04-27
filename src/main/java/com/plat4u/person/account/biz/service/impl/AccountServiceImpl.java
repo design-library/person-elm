@@ -18,17 +18,22 @@
  */
 package com.plat4u.person.account.biz.service.impl;
 
+import java.sql.Timestamp;
+
 import javax.persistence.NoResultException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.plat4u.person.account.biz.dao.AccountDao;
+import com.plat4u.person.account.biz.dao.PasswordHistoryDao;
 import com.plat4u.person.account.biz.domain.Account;
 import com.plat4u.person.account.biz.entity.AccountEntity;
+import com.plat4u.person.account.biz.entity.PasswordHistoryEntity;
 import com.plat4u.person.account.biz.service.AccountService;
 import com.plat4u.person.exception.AuthenticationException;
 import com.plat4u.person.exception.DuplicateException;
+import com.plat4u.person.util.RandomStringUtils;
 
 /**
  * AccountServiceImpl
@@ -41,6 +46,9 @@ public class AccountServiceImpl implements AccountService {
 
 	@Autowired
 	private AccountDao accountDao;
+
+	@Autowired
+	private PasswordHistoryDao passwordHistoryDao;
 	
 	/* (”ñ Javadoc)
 	 * @see com.plat4u.person.account.biz.service.AccountService#authenticate(com.plat4u.person.account.biz.domain.Account)
@@ -70,11 +78,25 @@ public class AccountServiceImpl implements AccountService {
 	 */
 	public Account create(Account account) throws  DuplicateException {
 		
-		AccountEntity accountEntity = new AccountEntity();
-		accountEntity.setId(account.id());
-		accountEntity.setPassword(account.password().stretch());
+		String id = RandomStringUtils.alphanumeric(12);
+		String accountId = account.id();
+		String registeredId = account.id();
+		String stretchedPassword = account.password().stretch();
+		Timestamp registeredDate = new Timestamp(System.currentTimeMillis());
 		
+		AccountEntity accountEntity = new AccountEntity();
+		accountEntity.setId(accountId);
+		accountEntity.setPassword(stretchedPassword);
 		AccountEntity accountEntityRtn = accountDao.insert(accountEntity);
+		
+		PasswordHistoryEntity passwordHistoryEntity = new PasswordHistoryEntity();
+		passwordHistoryEntity.setId(id);
+		passwordHistoryEntity.setAccountId(accountId);
+		passwordHistoryEntity.setPassword(stretchedPassword);
+		passwordHistoryEntity.setRegisteredId(registeredId);
+		passwordHistoryEntity.setRegistrationDate(registeredDate);
+		passwordHistoryDao.insert(passwordHistoryEntity);
+		
 		Account accountRtn = new Account(accountEntityRtn.getId(), account.password().mask());
 		
 		return accountRtn;
@@ -83,13 +105,26 @@ public class AccountServiceImpl implements AccountService {
 	/* (”ñ Javadoc)
 	 * @see com.plat4u.person.account.biz.service.AccountService#updatePassword(com.plat4u.person.account.biz.domain.Account)
 	 */
-	public Account updatePassword(Account account) {
+	public Account updatePassword(Account account) throws DuplicateException {
+		
+		String id = RandomStringUtils.alphanumeric(12);
+		String accountId = account.id();
+		String registeredId = account.id();
+		String stretchedPassword = account.password().stretch();
+		Timestamp registeredDate = new Timestamp(System.currentTimeMillis());
 		
 		AccountEntity accountEntity = new AccountEntity();
-		accountEntity.setId(account.id());
-		accountEntity.setPassword(account.password().stretch());
-		
+		accountEntity.setId(accountId);
+		accountEntity.setPassword(stretchedPassword);
 		AccountEntity accountEntityRtn = accountDao.update(accountEntity);
+		
+		PasswordHistoryEntity passwordHistoryEntity = new PasswordHistoryEntity();
+		passwordHistoryEntity.setId(id);
+		passwordHistoryEntity.setAccountId(accountId);
+		passwordHistoryEntity.setPassword(stretchedPassword);
+		passwordHistoryEntity.setRegisteredId(registeredId);
+		passwordHistoryEntity.setRegistrationDate(registeredDate);
+		passwordHistoryDao.insert(passwordHistoryEntity);
 		
 		Account accountRtn = new Account(accountEntityRtn.getId(), account.password().mask());
 		

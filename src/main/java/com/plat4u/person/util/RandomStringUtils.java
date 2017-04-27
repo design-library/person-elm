@@ -16,42 +16,18 @@
  *  You should have received a copy of the GNU General Public License
  *  along with plat4u.com.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.plat4u.person.account.biz.service;
-
-import com.plat4u.person.account.biz.domain.Account;
-import com.plat4u.person.exception.AuthenticationException;
-import com.plat4u.person.exception.DuplicateException;
+package com.plat4u.person.util;
 
 /**
- * AccountService
+ * RandomStringUtils
  *
  * @author plat4u.com
  * @version 1.0
  */
-public interface AccountService {
+public class RandomStringUtils {
 	
-	/**
-	 * 
-	 * @param account
-	 * @return
-	 * @throws AuthenticationException
-	 */
-	public Account authenticate(Account account) throws AuthenticationException;
-	
-	/**
-	 * 
-	 * @param account
-	 * @return
-	 * @throws DuplicateException
-	 */
-	public Account create(Account account) throws DuplicateException;
-	
-	/**
-	 * 
-	 * @param account
-	 * @return
-	 * @throws DuplicateException 
-	 */
-	public Account updatePassword(Account account) throws DuplicateException;
+	public static String alphanumeric(int length) {
+		return org.apache.commons.lang3.RandomStringUtils.randomAlphabetic(length);
+	}
 
 }

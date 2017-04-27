@@ -16,42 +16,31 @@
  *  You should have received a copy of the GNU General Public License
  *  along with plat4u.com.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.plat4u.person.account.biz.service;
+package com.plat4u.person.account.biz.dao;
 
-import com.plat4u.person.account.biz.domain.Account;
-import com.plat4u.person.exception.AuthenticationException;
+import com.plat4u.person.account.biz.entity.PasswordHistoryEntity;
 import com.plat4u.person.exception.DuplicateException;
 
 /**
- * AccountService
+ * PasswordHistoryDao
  *
  * @author plat4u.com
  * @version 1.0
  */
-public interface AccountService {
-	
+public interface PasswordHistoryDao {
+
 	/**
-	 * 
-	 * @param account
+	 * find by account_id and password.
+	 * @param entity
 	 * @return
-	 * @throws AuthenticationException
 	 */
-	public Account authenticate(Account account) throws AuthenticationException;
+	public PasswordHistoryEntity findByAccountIdAndPassword(PasswordHistoryEntity entity);
 	
 	/**
-	 * 
-	 * @param account
-	 * @return
-	 * @throws DuplicateException
-	 */
-	public Account create(Account account) throws DuplicateException;
-	
-	/**
-	 * 
-	 * @param account
+	 * insert password_history.
+	 * @param entity
 	 * @return
 	 * @throws DuplicateException 
 	 */
-	public Account updatePassword(Account account) throws DuplicateException;
-
+	public PasswordHistoryEntity insert(PasswordHistoryEntity entity) throws DuplicateException;
 }

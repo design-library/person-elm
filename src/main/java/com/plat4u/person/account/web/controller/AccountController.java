@@ -97,7 +97,7 @@ public class AccountController {
 	public AccountModel updatePassword(
 			@PathVariable String id,
 			@RequestHeader Map<String, String> requestHeader, 
-			@Valid @RequestBody AccountModel model) throws PathVariableException
+			@Valid @RequestBody AccountModel model) throws PathVariableException, DuplicateException
 	{
 		
 		if (model.getId().equals(id)) {
