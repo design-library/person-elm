@@ -24,7 +24,7 @@
     <query><![CDATA[
      SELECT COUNT(ph) 
        FROM PasswordHistoryEntity ph
-      WHERE ph.account_id = :accountId
+      WHERE ph.accountId = :accountId
         AND ph.password = :password
     ]]></query>
   </named-query>
@@ -32,7 +32,7 @@
     <query><![CDATA[
      SELECT ph
        FROM PasswordHistoryEntity ph
-      WHERE ph.account_id = :accountId
+      WHERE ph.accountId = :accountId
         AND ph.password = :password
     ]]></query>
   </named-query>
