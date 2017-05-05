@@ -53,13 +53,13 @@ public class AccountControllerTest extends ControllerTest {
 	@Test
 	public void test_1_アカウント登録の成功() throws Exception {
 		
-		AccountMsg model = new AccountMsg();
-		model.setId("test@plat4u.com");
-		model.setPassword("testo");
+		AccountMsg messageCarrier = new AccountMsg();
+		messageCarrier.setId("test@plat4u.com");
+		messageCarrier.setPassword("testo");
 		
 		mockMvc.perform(post("/api/v1.0/accounts")
 				.contentType(MediaType.APPLICATION_JSON)
-				.content(TestUtil.convertObjectToJsonBytes(model))
+				.content(TestUtil.convertObjectToJsonBytes(messageCarrier))
 				)
 		.andExpect(MockMvcResultMatchers.status().isOk())
         .andExpect(jsonPath("id", is("test@plat4u.com")))
@@ -70,28 +70,42 @@ public class AccountControllerTest extends ControllerTest {
 	@Test
 	public void test_2_アカウント登録の失敗_ID二重登録() throws Exception {
 		
-		AccountMsg model = new AccountMsg();
-		model.setId("test@plat4u.com");
-		model.setPassword("testo");
+		AccountMsg messageCarrier = new AccountMsg();
+		messageCarrier.setId("test@plat4u.com");
+		messageCarrier.setPassword("testo");
 		
 		mockMvc.perform(post("/api/v1.0/accounts")
 				.contentType(MediaType.APPLICATION_JSON)
-				.content(TestUtil.convertObjectToJsonBytes(model))
+				.content(TestUtil.convertObjectToJsonBytes(messageCarrier))
 				)
 		.andExpect(MockMvcResultMatchers.status().isConflict());
 
 	}
 	
 	@Test
-	public void test_3_パスワード更新の成功() throws Exception {
+	public void test_3_パスワード更新の失敗_パスの誤り() throws Exception {
 		
-		AccountMsg model = new AccountMsg();
-		model.setId("test@plat4u.com");
-		model.setPassword("test");
+		AccountMsg messageCarrier = new AccountMsg();
+		messageCarrier.setId("test@plat4u.com");
+		messageCarrier.setPassword("test");
+		
+		mockMvc.perform(put("/api/v1.0/accounts/test100@plat4u.com")
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(TestUtil.convertObjectToJsonBytes(messageCarrier))
+				)
+		.andExpect(MockMvcResultMatchers.status().isBadRequest());
+	}
+	
+	@Test
+	public void test_4_パスワード更新の成功() throws Exception {
+		
+		AccountMsg messageCarrier = new AccountMsg();
+		messageCarrier.setId("test@plat4u.com");
+		messageCarrier.setPassword("test");
 		
 		mockMvc.perform(put("/api/v1.0/accounts/test@plat4u.com")
 				.contentType(MediaType.APPLICATION_JSON)
-				.content(TestUtil.convertObjectToJsonBytes(model))
+				.content(TestUtil.convertObjectToJsonBytes(messageCarrier))
 				)
 		.andExpect(MockMvcResultMatchers.status().isOk())
         .andExpect(jsonPath("id", is("test@plat4u.com")))
@@ -100,15 +114,15 @@ public class AccountControllerTest extends ControllerTest {
 	}
 	
 	@Test
-	public void test_4_ログイン認証の成功() throws Exception {
+	public void test_5_ログイン認証の成功() throws Exception {
 		
-		AccountMsg model = new AccountMsg();
-		model.setId("test@plat4u.com");
-		model.setPassword("test");
+		AccountMsg messageCarrier = new AccountMsg();
+		messageCarrier.setId("test@plat4u.com");
+		messageCarrier.setPassword("test");
 		
 		mockMvc.perform(post("/api/v1.0/accounts/login")
 				.contentType(MediaType.APPLICATION_JSON)
-				.content(TestUtil.convertObjectToJsonBytes(model))
+				.content(TestUtil.convertObjectToJsonBytes(messageCarrier))
 				)
 		.andExpect(MockMvcResultMatchers.status().isOk())
         .andExpect(jsonPath("id", is("test@plat4u.com")))
@@ -117,71 +131,71 @@ public class AccountControllerTest extends ControllerTest {
 	}
 	
 	@Test
-	public void test_5_ログイン認証の失敗_IDの誤り() throws Exception {
+	public void test_6_ログイン認証の失敗_IDの誤り() throws Exception {
 		
-		AccountMsg model = new AccountMsg();
-		model.setId("testX@plat4u.com");
-		model.setPassword("test");
+		AccountMsg messageCarrier = new AccountMsg();
+		messageCarrier.setId("testX@plat4u.com");
+		messageCarrier.setPassword("test");
 		
 		mockMvc.perform(post("/api/v1.0/accounts/login")
 				.contentType(MediaType.APPLICATION_JSON)
-				.content(TestUtil.convertObjectToJsonBytes(model))
+				.content(TestUtil.convertObjectToJsonBytes(messageCarrier))
 				)
 		.andExpect(MockMvcResultMatchers.status().isUnauthorized());
 	}
 	
 	@Test
-	public void test_6_ログイン認証の失敗_パスワードの誤り() throws Exception {
+	public void test_7_ログイン認証の失敗_パスワードの誤り() throws Exception {
 		
-		AccountMsg model = new AccountMsg();
-		model.setId("test@plat4u.com");
-		model.setPassword("testX");
+		AccountMsg messageCarrier = new AccountMsg();
+		messageCarrier.setId("test@plat4u.com");
+		messageCarrier.setPassword("testX");
 		
 		mockMvc.perform(post("/api/v1.0/accounts/login")
 				.contentType(MediaType.APPLICATION_JSON)
-				.content(TestUtil.convertObjectToJsonBytes(model))
+				.content(TestUtil.convertObjectToJsonBytes(messageCarrier))
 				)
 		.andExpect(MockMvcResultMatchers.status().isUnauthorized());
 	}
 	
 	@Test
-	public void test_7_ログイン認証の失敗_IDの形式の誤り() throws Exception {
+	public void test_8_ログイン認証の失敗_IDの形式の誤り() throws Exception {
 		
-		AccountMsg model = new AccountMsg();
-		model.setId("test_plat4u.com");
-		model.setPassword("test");
+		AccountMsg messageCarrier = new AccountMsg();
+		messageCarrier.setId("test_plat4u.com");
+		messageCarrier.setPassword("test");
 		
 		mockMvc.perform(post("/api/v1.0/accounts/login")
 				.contentType(MediaType.APPLICATION_JSON)
-				.content(TestUtil.convertObjectToJsonBytes(model))
+				.content(TestUtil.convertObjectToJsonBytes(messageCarrier))
 				)
 		.andExpect(MockMvcResultMatchers.status().isBadRequest());
 	}
 	
 	@Test
-	public void test_8_ログイン認証の失敗_IDの未入力() throws Exception {
+	public void test_9_ログイン認証の失敗_IDの未入力() throws Exception {
 		
-		AccountMsg model = new AccountMsg();
-		model.setId("");
-		model.setPassword("test");
+		AccountMsg messageCarrier = new AccountMsg();
+		messageCarrier.setId("");
+		messageCarrier.setPassword("test");
 		
 		mockMvc.perform(post("/api/v1.0/accounts/login")
 				.contentType(MediaType.APPLICATION_JSON)
-				.content(TestUtil.convertObjectToJsonBytes(model))
+				.content(TestUtil.convertObjectToJsonBytes(messageCarrier))
 				)
 		.andExpect(MockMvcResultMatchers.status().isBadRequest());
 	}
 	
 	@Test
-	public void test_9_ログイン認証の失敗_パスワードの未入力() throws Exception {
+	public void test_10_ログイン認証の失敗_パスワードの未入力() throws Exception {
 		
-		AccountMsg model = new AccountMsg();
-		model.setId("test@plat4u.com");
-		model.setPassword("");
+		AccountMsg messageCarrier = new AccountMsg();
+		messageCarrier.setId("test@plat4u.com");
+		messageCarrier.setPassword("");
 		
 		mockMvc.perform(post("/api/v1.0/accounts/login")
 				.contentType(MediaType.APPLICATION_JSON)
-				.content(TestUtil.convertObjectToJsonBytes(model))
+				.content(TestUtil.convertObjectToJsonBytes(messageCarrier))
 				)
 		.andExpect(MockMvcResultMatchers.status().isBadRequest());
 	}
