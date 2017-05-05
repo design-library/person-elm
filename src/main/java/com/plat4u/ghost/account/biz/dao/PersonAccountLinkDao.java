@@ -28,10 +28,10 @@ import com.plat4u.ghost.account.biz.entity.PersonAccountLink;
  */
 public interface PersonAccountLinkDao {
 
-	public PersonAccountLink findOne(PersonAccountLink entity);
+	public PersonAccountLink findOne(PersonAccountLink personAccountLink);
 	
-	public PersonAccountLink insert(PersonAccountLink entity);
+	public PersonAccountLink insert(PersonAccountLink personAccountLink);
 	
-	public PersonAccountLink update(PersonAccountLink entity);
+	public PersonAccountLink update(PersonAccountLink personAccountLink);
 
 }

@@ -34,7 +34,7 @@ public interface PasswordHistoryDao {
 	 * @param entity
 	 * @return
 	 */
-	public PasswordHistory findByAccountIdAndPassword(PasswordHistory entity);
+	public PasswordHistory findByAccountIdAndPassword(PasswordHistory passwordHistory);
 	
 	/**
 	 * insert password_history.
@@ -42,5 +42,5 @@ public interface PasswordHistoryDao {
 	 * @return
 	 * @throws DuplicateException 
 	 */
-	public PasswordHistory insert(PasswordHistory entity) throws DuplicateException;
+	public PasswordHistory insert(PasswordHistory passwordHistory) throws DuplicateException;
 }

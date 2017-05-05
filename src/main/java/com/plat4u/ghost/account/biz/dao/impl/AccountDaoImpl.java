@@ -44,58 +44,61 @@ public class AccountDaoImpl implements AccountDao {
 	/* (”ñ Javadoc)
 	 * @see com.plat4u.ghost.account.biz.dao.AccountDao#findOne(com.plat4u.ghost.account.biz.entity.Account)
 	 */
-	public Account findOne(Account entity) {
+	public Account findOne(Account account) {
 		
 		TypedQuery<Account> query = entityManager.createNamedQuery("Account.findOne", Account.class);
-		query.setParameter("id", entity.getId());
-		query.setParameter("password", entity.getPassword());
-		Account accountEntityRtn = (Account)query.getSingleResult();
+		query.setParameter("id", account.getId());
+		query.setParameter("password", account.getPassword());
+		Account accountResult = (Account)query.getSingleResult();
 		
 		entityManager.clear();
 
-		return accountEntityRtn;
+		return accountResult;
+		
 	}
 
 	/* (”ñ Javadoc)
 	 * @see com.plat4u.ghost.account.biz.dao.AccountDao#insert(com.plat4u.ghost.account.biz.entity.Account)
 	 */
-	public Account insert(Account entity) throws DuplicateException {
+	public Account insert(Account account) throws DuplicateException {
 		
 		Query existsCheckQuery = entityManager.createNamedQuery("Account.count");
-		existsCheckQuery.setParameter("id", entity.getId());
-		existsCheckQuery.setParameter("password", entity.getPassword());
+		existsCheckQuery.setParameter("id", account.getId());
+		existsCheckQuery.setParameter("password", account.getPassword());
 		Long countOfEntity = (Long)existsCheckQuery.getSingleResult();
 		if (countOfEntity > 0) {
-			throw new DuplicateException("Double registration. " + entity.getId());
+			throw new DuplicateException("Double registration. " + account.getId());
 			
 		} else {
-			entityManager.persist(entity);
+			entityManager.persist(account);
 		}		
 		TypedQuery<Account> query = entityManager.createNamedQuery("Account.findOne", Account.class);
-		query.setParameter("id", entity.getId());
-		query.setParameter("password", entity.getPassword());
-		Account accountEntityRtn = (Account)query.getSingleResult();
+		query.setParameter("id", account.getId());
+		query.setParameter("password", account.getPassword());
+		Account accountResult = (Account)query.getSingleResult();
 		
 		entityManager.clear();
 		
-		return accountEntityRtn;
+		return accountResult;
+		
 	}
 
 	/* (”ñ Javadoc)
 	 * @see com.plat4u.ghost.account.biz.dao.AccountDao#update(com.plat4u.ghost.account.biz.entity.Account)
 	 */
-	public Account update(Account entity) {
+	public Account update(Account account) {
 		
-		entityManager.merge(entity);
+		entityManager.merge(account);
 		
 		TypedQuery<Account> query = entityManager.createNamedQuery("Account.findOne", Account.class);
-		query.setParameter("id", entity.getId());
-		query.setParameter("password", entity.getPassword());
-		Account accountEntityRtn = (Account)query.getSingleResult();
+		query.setParameter("id", account.getId());
+		query.setParameter("password", account.getPassword());
+		Account accountResult = (Account)query.getSingleResult();
 		
 		entityManager.clear();
 		
-		return accountEntityRtn;
+		return accountResult;
+		
 	}
 
 }

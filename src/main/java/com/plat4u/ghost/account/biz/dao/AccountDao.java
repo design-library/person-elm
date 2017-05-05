@@ -29,10 +29,10 @@ import com.plat4u.ghost.common.exception.DuplicateException;
  */
 public interface AccountDao {
 	
-	public Account findOne(Account entity);
+	public Account findOne(Account account);
 	
-	public Account insert(Account entity) throws DuplicateException;
+	public Account insert(Account account) throws DuplicateException;
 	
-	public Account update(Account entity);
+	public Account update(Account account);
 
 }

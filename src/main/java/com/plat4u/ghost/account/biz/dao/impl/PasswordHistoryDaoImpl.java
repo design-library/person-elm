@@ -44,37 +44,43 @@ public class PasswordHistoryDaoImpl implements PasswordHistoryDao {
 	/* (”ñ Javadoc)
 	 * @see com.plat4u.ghost.account.biz.dao.PasswordHistoryDao#findByAccountIdAndPassword(com.plat4u.ghost.account.biz.entity.PasswordHistory)
 	 */
-	public PasswordHistory findByAccountIdAndPassword(PasswordHistory entity) {
+	public PasswordHistory findByAccountIdAndPassword(PasswordHistory passwordHistory) {
 
-		TypedQuery<PasswordHistory> query = entityManager.createNamedQuery("PasswordHistory.findByAccountIdAndPassword", PasswordHistory.class);
-		query.setParameter("accountId", entity.getAccountId());
-		query.setParameter("password", entity.getPassword());
-		PasswordHistory passwordHistoryEntityRtn = (PasswordHistory)query.getSingleResult();
+		TypedQuery<PasswordHistory> query = 
+				entityManager.createNamedQuery("PasswordHistory.findByAccountIdAndPassword", PasswordHistory.class);
+		query.setParameter("accountId", passwordHistory.getAccountId());
+		query.setParameter("password", passwordHistory.getPassword());
+		PasswordHistory passwordHistoryResult = (PasswordHistory)query.getSingleResult();
+
+		entityManager.clear();
 		
-		return passwordHistoryEntityRtn;
+		return passwordHistoryResult;
+		
 	}
 
 	/* (”ñ Javadoc)
 	 * @see com.plat4u.ghost.account.biz.dao.PasswordHistoryDao#insert(com.plat4u.ghost.account.biz.entity.PasswordHistory)
 	 */
-	public PasswordHistory insert(PasswordHistory entity) throws DuplicateException {
+	public PasswordHistory insert(PasswordHistory passwordHistory) throws DuplicateException {
 		Query existsCheckQuery = entityManager.createNamedQuery("PasswordHistory.count");
-		existsCheckQuery.setParameter("accountId", entity.getAccountId());
-		existsCheckQuery.setParameter("password", entity.getPassword());
+		existsCheckQuery.setParameter("accountId", passwordHistory.getAccountId());
+		existsCheckQuery.setParameter("password", passwordHistory.getPassword());
 		Long countOfEntity = (Long)existsCheckQuery.getSingleResult();
 		if (countOfEntity > 0) {
-			throw new DuplicateException("Double registration. " + entity.getAccountId());
+			throw new DuplicateException("Double registration. " + passwordHistory.getAccountId());
 			
 		} else {
-			entityManager.persist(entity);
-			entityManager.flush();
+			entityManager.persist(passwordHistory);
 		}		
 		TypedQuery<PasswordHistory> query = entityManager.createNamedQuery("PasswordHistory.findByAccountIdAndPassword", PasswordHistory.class);
-		query.setParameter("accountId", entity.getAccountId());
-		query.setParameter("password", entity.getPassword());
-		PasswordHistory passwordHistoryEntityRtn = (PasswordHistory)query.getSingleResult();
+		query.setParameter("accountId", passwordHistory.getAccountId());
+		query.setParameter("password", passwordHistory.getPassword());
+		PasswordHistory passwordHistoryResult = (PasswordHistory)query.getSingleResult();
 		
-		return passwordHistoryEntityRtn;
+		entityManager.clear();
+		
+		return passwordHistoryResult;
+		
 	}
 
 }
