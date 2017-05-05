@@ -21,6 +21,7 @@ package com.plat4u.ghost.account.web.controller;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -61,7 +62,8 @@ public class AccountController {
 	@ResponseBody
 	public AccountMsg login(
 			@RequestHeader Map<String, String> requestHeader, 
-			@Valid @RequestBody AccountMsg messageCarrier) throws AuthenticationException 
+			@Valid @RequestBody AccountMsg messageCarrier) 
+					throws AuthenticationException, IllegalAccessException, InvocationTargetException 
 	{
 		
 		Account account = AccountHelper.toAccount(messageCarrier);
@@ -79,7 +81,8 @@ public class AccountController {
 	@ResponseBody
 	public AccountMsg create(
 			@RequestHeader Map<String, String> requestHeader, 
-			@Valid @RequestBody AccountMsg messageCarrier) throws DuplicateException
+			@Valid @RequestBody AccountMsg messageCarrier) 
+					throws DuplicateException, IllegalAccessException, InvocationTargetException
 	{
 		
 		Account account = AccountHelper.toAccount(messageCarrier);
@@ -98,7 +101,8 @@ public class AccountController {
 	public AccountMsg updatePassword(
 			@PathVariable String id,
 			@RequestHeader Map<String, String> requestHeader, 
-			@Valid @RequestBody AccountMsg messageCarrier) throws PathVariableException, DuplicateException
+			@Valid @RequestBody AccountMsg messageCarrier) 
+					throws PathVariableException, DuplicateException, IllegalAccessException, InvocationTargetException
 	{
 		
 		if (messageCarrier.getId().equals(id)) {

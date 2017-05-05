@@ -18,6 +18,10 @@
  */
 package com.plat4u.ghost.account.web.helper;
 
+import java.lang.reflect.InvocationTargetException;
+
+import org.apache.commons.beanutils.BeanUtils;
+
 import com.plat4u.ghost.account.biz.entity.Account;
 import com.plat4u.ghost.account.web.msg.AccountMsg;
 
@@ -29,23 +33,23 @@ import com.plat4u.ghost.account.web.msg.AccountMsg;
  */
 public class AccountHelper {
 	
-	public static Account toAccount(AccountMsg messageCarrier) {
-		
-		String id = messageCarrier.getId();
-		String password = messageCarrier.getPassword();
+	public static Account toAccount(AccountMsg messageCarrier) 
+			throws IllegalAccessException, InvocationTargetException 
+	{
 		
 		Account account = new Account();
-		account.setId(id);
-		account.setPassword(password);
+		BeanUtils.copyProperties(account, messageCarrier);
 		
 		return account;
 		
 	}
 	
-	public static AccountMsg toAccountMsg(Account account) {
+	public static AccountMsg toAccountMsg(Account account) 
+			throws IllegalAccessException, InvocationTargetException 
+	{
 		AccountMsg messageCarrier = new AccountMsg();
-		messageCarrier.setId(account.getId());
-		messageCarrier.setPassword(account.getPassword());
+		BeanUtils.copyProperties(messageCarrier, account);
+
 		return messageCarrier;
 	}
 
