@@ -42,9 +42,11 @@
 		</mvc:message-converters>
 	</mvc:annotation-driven>
       
-	<context:component-scan base-package="com.plat4u.person.account.web.controller"/>
-	<context:component-scan base-package="com.plat4u.person.account.web.model"/>
-	<context:component-scan base-package="com.plat4u.person.exception"/>
+	<context:component-scan base-package="com.plat4u.ghost.account.web.controller"/>
+	<context:component-scan base-package="com.plat4u.ghost.account.web.msg"/>
+	<context:component-scan base-package="com.plat4u.ghost.person.web.controller"/>
+	<context:component-scan base-package="com.plat4u.ghost.person.web.msg"/>
+	<context:component-scan base-package="com.plat4u.ghost.common.exception"/>
 	
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 

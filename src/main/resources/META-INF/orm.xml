@@ -4,36 +4,64 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm
                             http://xmlns.jcp.org/xml/ns/persistence/orm_2_1.xsd">
-  <named-query name="AccountEntity.count">
+  <named-query name="Account.count">
     <query><![CDATA[
      SELECT COUNT(a) 
-       FROM AccountEntity a
+       FROM Account a
       WHERE a.id = :id
         AND a.password = :password
     ]]></query>
   </named-query>
-  <named-query name="AccountEntity.findOne">
+  <named-query name="Account.findOne">
     <query><![CDATA[
      SELECT a
-       FROM AccountEntity a
+       FROM Account a
       WHERE a.id = :id
         AND a.password = :password
     ]]></query>
   </named-query>
-  <named-query name="PasswordHistoryEntity.count">
+  <named-query name="PasswordHistory.count">
     <query><![CDATA[
      SELECT COUNT(ph) 
-       FROM PasswordHistoryEntity ph
+       FROM PasswordHistory ph
       WHERE ph.accountId = :accountId
         AND ph.password = :password
     ]]></query>
   </named-query>
-  <named-query name="PasswordHistoryEntity.findByAccountIdAndPassword">
+  <named-query name="PasswordHistory.findByAccountIdAndPassword">
     <query><![CDATA[
      SELECT ph
-       FROM PasswordHistoryEntity ph
+       FROM PasswordHistory ph
       WHERE ph.accountId = :accountId
         AND ph.password = :password
+    ]]></query>
+  </named-query>
+  <named-query name="Person.count">
+    <query><![CDATA[
+     SELECT COUNT(p) 
+       FROM Person p
+      WHERE p.id = :id
+    ]]></query>
+  </named-query>
+  <named-query name="Person.findOne">
+    <query><![CDATA[
+     SELECT p
+       FROM Person p
+      WHERE p.id = :id
+    ]]></query>
+  </named-query>
+  <named-query name="PersonNameHistory.count">
+    <query><![CDATA[
+     SELECT COUNT(pnh) 
+       FROM PersonNameHistory pnh
+      WHERE pnh.id = :id
+    ]]></query>
+  </named-query>
+  <named-query name="PersonNameHistory.findOne">
+    <query><![CDATA[
+     SELECT pnh
+       FROM PersonNameHistory pnh
+      WHERE pnh.id = :id
     ]]></query>
   </named-query>
 </entity-mappings>

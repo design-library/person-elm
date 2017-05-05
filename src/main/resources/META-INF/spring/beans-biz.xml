@@ -37,36 +37,35 @@
         
   <aop:aspectj-autoproxy />
  
-  <context:component-scan base-package="com.plat4u.person.account.biz.dao"/>
-  <context:component-scan base-package="com.plat4u.person.account.biz.domain"/>
-  <context:component-scan base-package="com.plat4u.person.account.biz.service"/>
-  <context:component-scan base-package="com.plat4u.person.account.biz.entity"/>
-  <context:component-scan base-package="com.plat4u.person.exception"/>
+  <context:component-scan base-package="com.plat4u.ghost.account.biz.dao"/>
+  <context:component-scan base-package="com.plat4u.ghost.account.web.helper"/>
+  <context:component-scan base-package="com.plat4u.ghost.account.biz.service"/>
+  <context:component-scan base-package="com.plat4u.ghost.account.biz.entity"/>
+  <context:component-scan base-package="com.plat4u.ghost.person.biz.dao"/>
+  <context:component-scan base-package="com.plat4u.ghost.person.web.helper"/>
+  <context:component-scan base-package="com.plat4u.ghost.person.biz.service"/>
+  <context:component-scan base-package="com.plat4u.ghost.person.biz.entity"/>
+  <context:component-scan base-package="com.plat4u.ghost.common.exception"/>
   
   <context:property-placeholder location="classpath:META-INF/jdbc.properties"/>
-
-<!--   
-  <bean id="transactionManager"
-      class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-    <property name="dataSource" ref="dataSource" />
-  </bean>
 
   <bean id="entityManagerFactory"
     class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
     <property name="dataSource" ref="dataSource"/>
-    <property name="persistenceProviderClass" value="org.hibernate.jpa.HibernatePresistenceProvider"/>
-    <property name="packagesToScan" value="com.plat4u.biz"/>
+    <property name="packagesToScan" value="com.plat4u.ghost.person.biz.entity, com.plat4u.ghost.account.biz.entity"/>
+	<property name="jpaVendorAdapter">
+		<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+	</property>
     <property name="jpaProperties">
       <props>
-        <prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>
-        <prop key="hibernate.show_sql">true</prop>
+		<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
         <prop key="hibernate.ejb.naming_strategy">org.hibernate.cfg.ImprovedNamingStrategy</prop>
+        <prop key="hibernate.show_sql">true</prop>
       </props>
     </property>
   </bean>
- -->
 
-  <jpa:repositories base-package="com.plat4u.person.account.biz.dao.impl"/>
+  <jpa:repositories base-package="com.plat4u.ghost.person.biz.dao.impl, com.plat4u.ghost.account.biz.dao.impl"/>
 
   <bean id="transactionManager"
       class="org.springframework.orm.jpa.JpaTransactionManager">
@@ -75,7 +74,7 @@
   
   <aop:config>
     <aop:advisor advice-ref="transactionAdvice"
-        pointcut="execution(* com.plat4u.person.account.biz.service.*Service.*(..))" />
+        pointcut="execution(* com.plat4u.ghost.account.biz.service.*Service.*(..)), execution(* com.plat4u.ghost.person.biz.service.*Service.*(..))" />
   </aop:config>
 
   <tx:advice id="transactionAdvice" transaction-manager="transactionManager">
@@ -102,15 +101,6 @@
     </tx:attributes>
   </tx:advice>
  
- <!-- 
-  <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
-    <constructor-arg ref="dataSource" />
-  </bean>
-  <bean class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
-    <constructor-arg ref="dataSource" />
-  </bean>
- -->
- 
   <bean id="dataSource"
     class="org.apache.commons.dbcp.BasicDataSource">
     <property name="driverClassName" value="${jdbc.driverClassName}" />
@@ -118,8 +108,5 @@
     <property name="username" value="${jdbc.username}" />
     <property name="password" value="${jdbc.password}" />
   </bean>
-
-  <!-- <context:property-placeholder location="jndi.properties"/> -->
-  <!-- <jee:jndi-lookup id="dataSource"  jndi-name="${jndi.datasource}" /> -->
  
 </beans>
