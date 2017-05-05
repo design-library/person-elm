@@ -18,6 +18,7 @@
  */
 package com.plat4u.ghost.common.web.controller;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -116,6 +117,38 @@ public class ExceptionControllerAdvice {
 				defaultMessage, 
 				LocaleContextHolder.getLocale());
 		errors.add("401", message);
+		
+		return errors;
+	}
+
+	@ExceptionHandler
+	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+	@ResponseBody
+	public Errors handleException(IllegalAccessException e) {
+		Errors errors = new Errors();
+		String defaultMessage = "Internal Server Error. ";
+		String message = messageSource.getMessage(
+				"com.plat4u.ghost.account.biz.service.AccountService", 
+				null, 
+				defaultMessage, 
+				LocaleContextHolder.getLocale());
+		errors.add("500", message);
+		
+		return errors;
+	}
+
+	@ExceptionHandler
+	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+	@ResponseBody
+	public Errors handleException(InvocationTargetException e) {
+		Errors errors = new Errors();
+		String defaultMessage = "Internal Server Error. ";
+		String message = messageSource.getMessage(
+				"com.plat4u.ghost.account.biz.service.AccountService", 
+				null, 
+				defaultMessage, 
+				LocaleContextHolder.getLocale());
+		errors.add("500", message);
 		
 		return errors;
 	}
