@@ -50,18 +50,18 @@
       WHERE p.id = :id
     ]]></query>
   </named-query>
-  <named-query name="PersonNameHistory.count">
+  <named-query name="PersonHistory.count">
     <query><![CDATA[
-     SELECT COUNT(pnh) 
-       FROM PersonNameHistory pnh
-      WHERE pnh.id = :id
+     SELECT COUNT(ph) 
+       FROM PersonHistory ph
+      WHERE ph.id = :id
     ]]></query>
   </named-query>
-  <named-query name="PersonNameHistory.findOne">
+  <named-query name="PersonHistory.findOne">
     <query><![CDATA[
-     SELECT pnh
-       FROM PersonNameHistory pnh
-      WHERE pnh.id = :id
+     SELECT ph
+       FROM PersonHistory ph
+      WHERE ph.id = :id
     ]]></query>
   </named-query>
 </entity-mappings>
