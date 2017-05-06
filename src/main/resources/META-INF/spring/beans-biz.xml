@@ -74,7 +74,7 @@
   
   <aop:config>
     <aop:advisor advice-ref="transactionAdvice"
-        pointcut="execution(* com.plat4u.ghost.account.biz.service.*Service.*(..)), execution(* com.plat4u.ghost.person.biz.service.*Service.*(..))" />
+        pointcut="execution(* com.plat4u.ghost.account.biz.service.*Service.*(..)) || execution(* com.plat4u.ghost.person.biz.service.*Service.*(..))" />
   </aop:config>
 
   <tx:advice id="transactionAdvice" transaction-manager="transactionManager">
