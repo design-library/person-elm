@@ -16,7 +16,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with plat4u.com.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.plat4u.ghost.account.web.helper;
+package com.plat4u.ghost.account.helper;
 
 import java.lang.reflect.InvocationTargetException;
 

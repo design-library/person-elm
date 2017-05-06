@@ -88,17 +88,7 @@ public class AccountServiceImpl implements AccountService {
 		
 		Account accountResult = accountDao.insert(account);
 		
-		String id = RandomStringUtils.alphanumeric(12);
-		String registeredId = account.getId();
-		Timestamp registeredDate = new Timestamp(System.currentTimeMillis());
-		
-		PasswordHistory passwordHistory = new PasswordHistory();
-		passwordHistory.setId(id);
-		passwordHistory.setAccountId(accountId);
-		passwordHistory.setPassword(stretchedPassword);
-		passwordHistory.setRegisteredId(registeredId);
-		passwordHistory.setRegistrationDate(registeredDate);
-		passwordHistoryDao.insert(passwordHistory);
+		insertPasswordHistory(accountResult);
 		
 		accountResult.setPassword(passwordValue.mask());
 		
@@ -119,22 +109,26 @@ public class AccountServiceImpl implements AccountService {
 		
 		Account accountResult = accountDao.update(account);
 		
-		String id = RandomStringUtils.alphanumeric(12);
-		String registeredId = account.getId();
-		Timestamp registeredDate = new Timestamp(System.currentTimeMillis());
-		
-		PasswordHistory passwordHistory = new PasswordHistory();
-		passwordHistory.setId(id);
-		passwordHistory.setAccountId(accountId);
-		passwordHistory.setPassword(stretchedPassword);
-		passwordHistory.setRegisteredId(registeredId);
-		passwordHistory.setRegistrationDate(registeredDate);
-		passwordHistoryDao.insert(passwordHistory);
+		insertPasswordHistory(accountResult);
 		
 		accountResult.setPassword(passwordValue.mask());
 		
 		return accountResult;
 		
+	}
+	
+	private void insertPasswordHistory(Account account) throws DuplicateException {
+		String id = RandomStringUtils.alphanumeric(12);
+		Timestamp registrationDate = new Timestamp(System.currentTimeMillis());
+		
+		PasswordHistory passwordHistory = new PasswordHistory();
+		passwordHistory.setId(id);
+		passwordHistory.setAccountId(account.getId());
+		passwordHistory.setPassword(account.getPassword());
+		passwordHistory.setRegisteredId(account.getId());
+		passwordHistory.setRegistrationDate(registrationDate);
+		passwordHistoryDao.insert(passwordHistory);
+
 	}
 
 }

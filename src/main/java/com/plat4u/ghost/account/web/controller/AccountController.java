@@ -38,7 +38,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.plat4u.ghost.account.biz.entity.Account;
 import com.plat4u.ghost.account.biz.service.AccountService;
-import com.plat4u.ghost.account.web.helper.AccountHelper;
+import com.plat4u.ghost.account.helper.AccountHelper;
 import com.plat4u.ghost.account.web.msg.AccountMsg;
 import com.plat4u.ghost.common.exception.AuthenticationException;
 import com.plat4u.ghost.common.exception.DuplicateException;
