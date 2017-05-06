@@ -80,6 +80,11 @@ public class ControllerTest {
 			ps.executeUpdate();
 			ps.close();
 			
+			String queryP = "delete from person";
+			ps = con.prepareStatement(queryP);
+			ps.executeUpdate();
+			ps.close();
+			
 		} catch(SQLException e) {
 			throw e;
 			
