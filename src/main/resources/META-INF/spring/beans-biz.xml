@@ -38,11 +38,9 @@
   <aop:aspectj-autoproxy />
  
   <context:component-scan base-package="com.plat4u.ghost.account.biz.dao"/>
-  <context:component-scan base-package="com.plat4u.ghost.account.helper"/>
   <context:component-scan base-package="com.plat4u.ghost.account.biz.service"/>
   <context:component-scan base-package="com.plat4u.ghost.account.biz.entity"/>
   <context:component-scan base-package="com.plat4u.ghost.person.biz.dao"/>
-  <context:component-scan base-package="com.plat4u.ghost.person.helper"/>
   <context:component-scan base-package="com.plat4u.ghost.person.biz.service"/>
   <context:component-scan base-package="com.plat4u.ghost.person.biz.entity"/>
   <context:component-scan base-package="com.plat4u.ghost.common.exception"/>
