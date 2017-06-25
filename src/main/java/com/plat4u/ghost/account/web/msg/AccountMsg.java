@@ -26,6 +26,9 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * AccountMsg
  *
@@ -53,6 +56,7 @@ public class AccountMsg implements Serializable {
 	 * Get the id .
 	 * @return id
 	 */
+    @JsonProperty(value = "id")
 	public String getId() {
 		return id;
 	}
@@ -69,6 +73,7 @@ public class AccountMsg implements Serializable {
 	 * Get the password .
 	 * @return password
 	 */
+    @JsonProperty(value = "password")
 	public String getPassword() {
 		return password;
 	}

@@ -25,6 +25,9 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * PersonMsg
  *
@@ -97,6 +100,8 @@ public class PersonMsg {
 	 * Get the id .
 	 * @return id
 	 */
+	@JsonIgnore
+    @JsonProperty(value = "id")
 	public String getId() {
 		return id;
 	}
