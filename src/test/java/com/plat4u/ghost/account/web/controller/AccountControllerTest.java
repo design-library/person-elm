@@ -51,7 +51,7 @@ public class AccountControllerTest extends ControllerTest {
 	}
 	
 	@Test
-	public void test_1_アカウント登録の成功() throws Exception {
+	public void test_1_success_account_touroku() throws Exception {
 		
 		AccountMsg messageCarrier = new AccountMsg();
 		messageCarrier.setId("test@plat4u.com");
@@ -68,7 +68,7 @@ public class AccountControllerTest extends ControllerTest {
 	}
 	
 	@Test
-	public void test_2_アカウント登録の失敗_ID二重登録() throws Exception {
+	public void test_2_fail_account_touroku_duplicate() throws Exception {
 		
 		AccountMsg messageCarrier = new AccountMsg();
 		messageCarrier.setId("test@plat4u.com");
@@ -83,7 +83,7 @@ public class AccountControllerTest extends ControllerTest {
 	}
 	
 	@Test
-	public void test_3_パスワード更新の失敗_パスの誤り() throws Exception {
+	public void test_3_fail_account_koushin_password() throws Exception {
 		
 		AccountMsg messageCarrier = new AccountMsg();
 		messageCarrier.setId("test@plat4u.com");
@@ -97,7 +97,7 @@ public class AccountControllerTest extends ControllerTest {
 	}
 	
 	@Test
-	public void test_4_パスワード更新の成功() throws Exception {
+	public void test_4_success_account_koushin_password() throws Exception {
 		
 		AccountMsg messageCarrier = new AccountMsg();
 		messageCarrier.setId("test@plat4u.com");
@@ -114,7 +114,7 @@ public class AccountControllerTest extends ControllerTest {
 	}
 	
 	@Test
-	public void test_5_ログイン認証の成功() throws Exception {
+	public void test_5_success_account_login() throws Exception {
 		
 		AccountMsg messageCarrier = new AccountMsg();
 		messageCarrier.setId("test@plat4u.com");
@@ -131,7 +131,7 @@ public class AccountControllerTest extends ControllerTest {
 	}
 	
 	@Test
-	public void test_6_ログイン認証の失敗_IDの誤り() throws Exception {
+	public void test_6_fail_account_login_id() throws Exception {
 		
 		AccountMsg messageCarrier = new AccountMsg();
 		messageCarrier.setId("testX@plat4u.com");
@@ -145,7 +145,7 @@ public class AccountControllerTest extends ControllerTest {
 	}
 	
 	@Test
-	public void test_7_ログイン認証の失敗_パスワードの誤り() throws Exception {
+	public void test_7_fail_account_login_password() throws Exception {
 		
 		AccountMsg messageCarrier = new AccountMsg();
 		messageCarrier.setId("test@plat4u.com");
@@ -159,7 +159,7 @@ public class AccountControllerTest extends ControllerTest {
 	}
 	
 	@Test
-	public void test_8_ログイン認証の失敗_IDの形式の誤り() throws Exception {
+	public void test_8_fail_account_login_id_format() throws Exception {
 		
 		AccountMsg messageCarrier = new AccountMsg();
 		messageCarrier.setId("test_plat4u.com");
@@ -173,7 +173,7 @@ public class AccountControllerTest extends ControllerTest {
 	}
 	
 	@Test
-	public void test_9_ログイン認証の失敗_IDの未入力() throws Exception {
+	public void test_9_fail_account_login_no_id() throws Exception {
 		
 		AccountMsg messageCarrier = new AccountMsg();
 		messageCarrier.setId("");
@@ -187,7 +187,7 @@ public class AccountControllerTest extends ControllerTest {
 	}
 	
 	@Test
-	public void test_10_ログイン認証の失敗_パスワードの未入力() throws Exception {
+	public void test_10_fail_account_login_no_password() throws Exception {
 		
 		AccountMsg messageCarrier = new AccountMsg();
 		messageCarrier.setId("test@plat4u.com");

@@ -51,7 +51,7 @@ public class PersonControllerTest extends ControllerTest {
 	}
 	
 	@Test
-	public void test_1_パーソン登録の失敗_必須入力() throws Exception {
+	public void test_1_fail_person_touroku_required() throws Exception {
 		
 		PersonMsg messageCarrier = new PersonMsg();
 		messageCarrier.setFirstName("");
@@ -68,7 +68,7 @@ public class PersonControllerTest extends ControllerTest {
 	}
 	
 	@Test
-	public void test_2_パーソン登録の失敗_日付誤り() throws Exception {
+	public void test_2_fail_person_touroku_date() throws Exception {
 		
 		PersonMsg messageCarrier = new PersonMsg();
 		messageCarrier.setFirstName("");
@@ -85,7 +85,7 @@ public class PersonControllerTest extends ControllerTest {
 	}
 	
 	@Test
-	public void test_3_パーソン登録の成功() throws Exception {
+	public void test_3_success_person_touroku() throws Exception {
 		
 		PersonMsg messageCarrier = new PersonMsg();
 		messageCarrier.setFirstName("shinya");
@@ -128,7 +128,7 @@ public class PersonControllerTest extends ControllerTest {
 	}
 /*
 	@Test
-	public void test_4_パーソン更新の失敗_電話番号誤り() throws Exception {
+	public void test_4_fail_person_koushin_telephon() throws Exception {
 		
 		PersonMsg messageCarrier = new PersonMsg();
 		messageCarrier.setFirstName("shinya");
@@ -156,7 +156,7 @@ public class PersonControllerTest extends ControllerTest {
 	}
 	
 	@Test
-	public void test_5_パーソン更新の成功() throws Exception {
+	public void test_5_success_person_koushin() throws Exception {
 		
 		PersonMsg messageCarrier = new PersonMsg();
 		messageCarrier.setFirstName("shinya");
