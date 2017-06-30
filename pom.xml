@@ -4,7 +4,10 @@
   <artifactId>person-elm</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
-  <dependencies> 
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  <dependencies>
   	<dependency> 
   		<groupId>org.springframework</groupId>
   		<artifactId>spring-webmvc</artifactId>
