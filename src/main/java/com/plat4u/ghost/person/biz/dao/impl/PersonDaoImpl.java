@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 plat4u.com
+  * Copyright 2017 plat4u.com
  * 
  * This file is part of ghost.
  *
@@ -40,7 +40,7 @@ public class PersonDaoImpl implements com.plat4u.ghost.person.biz.dao.PersonDao 
 	@PersistenceContext
     EntityManager entityManager;
 	
-	/* (”ñ Javadoc)
+	/* (ï¿½ï¿½ Javadoc)
 	 * @see com.plat4u.ghost.person.biz.dao.PersonDao#findOne(com.plat4u.ghost.person.biz.entity.Person)
 	 */
 	public Person findOne(Person person) {
@@ -53,7 +53,7 @@ public class PersonDaoImpl implements com.plat4u.ghost.person.biz.dao.PersonDao 
 		return personEntityRtn;
 	}
 
-	/* (”ñ Javadoc)
+	/* (ï¿½ï¿½ Javadoc)
 	 * @see com.plat4u.ghost.person.biz.dao.PersonDao#insert(com.plat4u.ghost.person.biz.entity.Person)
 	 */
 	public Person insert(Person person) throws DuplicateException {
@@ -76,7 +76,7 @@ public class PersonDaoImpl implements com.plat4u.ghost.person.biz.dao.PersonDao 
 		return personEntityRtn;
 	}
 
-	/* (”ñ Javadoc)
+	/* (ï¿½ï¿½ Javadoc)
 	 * @see com.plat4u.ghost.person.biz.dao.PersonDao#update(com.plat4u.ghost.person.biz.entity.Person)
 	 */
 	public Person update(Person person) {

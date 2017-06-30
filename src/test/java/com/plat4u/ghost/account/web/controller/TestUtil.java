@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 plat4u.com.
+  * Copyright 2017 plat4u.com.
  * 
  * This file is part of person composition.
  *

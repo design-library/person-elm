@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 plat4u.com
+  * Copyright 2017 plat4u.com
  * 
  * This file is part of ghost.
  *
@@ -41,7 +41,7 @@ public class AccountDaoImpl implements AccountDao {
 	@PersistenceContext
     EntityManager entityManager;
 	
-	/* (”ñ Javadoc)
+	/* (ï¿½ï¿½ Javadoc)
 	 * @see com.plat4u.ghost.account.biz.dao.AccountDao#findOne(com.plat4u.ghost.account.biz.entity.Account)
 	 */
 	public Account findOne(Account account) {
@@ -57,7 +57,7 @@ public class AccountDaoImpl implements AccountDao {
 		
 	}
 
-	/* (”ñ Javadoc)
+	/* (ï¿½ï¿½ Javadoc)
 	 * @see com.plat4u.ghost.account.biz.dao.AccountDao#insert(com.plat4u.ghost.account.biz.entity.Account)
 	 */
 	public Account insert(Account account) throws DuplicateException {
@@ -83,7 +83,7 @@ public class AccountDaoImpl implements AccountDao {
 		
 	}
 
-	/* (”ñ Javadoc)
+	/* (ï¿½ï¿½ Javadoc)
 	 * @see com.plat4u.ghost.account.biz.dao.AccountDao#update(com.plat4u.ghost.account.biz.entity.Account)
 	 */
 	public Account update(Account account) {

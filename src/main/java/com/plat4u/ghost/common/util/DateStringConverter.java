@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 plat4u.com
+  * Copyright 2017 plat4u.com
  * 
  * This file is part of person elements.
  *
@@ -31,7 +31,7 @@ import org.apache.commons.beanutils.Converter;
  */
 public class DateStringConverter implements Converter {
 
-	/* (”ñ Javadoc)
+	/* (ï¿½ï¿½ Javadoc)
 	 * @see org.apache.commons.beanutils.Converter#convert(java.lang.Class, java.lang.Object)
 	 */
 	public <T> T convert(Class<T> type, Object value) {

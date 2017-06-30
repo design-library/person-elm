@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 plat4u.com
+  * Copyright 2017 plat4u.com
  * 
  * This file is part of ghost.
  *
@@ -41,7 +41,7 @@ public class PasswordHistoryDaoImpl implements PasswordHistoryDao {
 	@PersistenceContext
     EntityManager entityManager;
 	
-	/* (”ñ Javadoc)
+	/* (ï¿½ï¿½ Javadoc)
 	 * @see com.plat4u.ghost.account.biz.dao.PasswordHistoryDao#findByAccountIdAndPassword(com.plat4u.ghost.account.biz.entity.PasswordHistory)
 	 */
 	public PasswordHistory findByAccountIdAndPassword(PasswordHistory passwordHistory) {
@@ -58,7 +58,7 @@ public class PasswordHistoryDaoImpl implements PasswordHistoryDao {
 		
 	}
 
-	/* (”ñ Javadoc)
+	/* (ï¿½ï¿½ Javadoc)
 	 * @see com.plat4u.ghost.account.biz.dao.PasswordHistoryDao#insert(com.plat4u.ghost.account.biz.entity.PasswordHistory)
 	 */
 	public PasswordHistory insert(PasswordHistory passwordHistory) throws DuplicateException {

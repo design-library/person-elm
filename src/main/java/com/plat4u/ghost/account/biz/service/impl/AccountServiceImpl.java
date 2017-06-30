@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 plat4u.com
+  * Copyright 2017 plat4u.com
  * 
  * This file is part of ghost.
  *
@@ -50,7 +50,7 @@ public class AccountServiceImpl implements AccountService {
 	@Autowired
 	private PasswordHistoryDao passwordHistoryDao;
 	
-	/* (”ñ Javadoc)
+	/* (ï¿½ï¿½ Javadoc)
 	 * @see com.plat4u.ghost.account.biz.service.AccountService#authenticate(com.plat4u.ghost.account.biz.entity.Account)
 	 */
 	public Account authenticate(Account account) throws AuthenticationException {
@@ -75,7 +75,7 @@ public class AccountServiceImpl implements AccountService {
 		
 	}
 
-	/* (”ñ Javadoc)
+	/* (ï¿½ï¿½ Javadoc)
 	 * @see com.plat4u.ghost.account.biz.service.AccountService#create(com.plat4u.ghost.account.biz.entity.Account)
 	 */
 	public Account create(Account account) throws  DuplicateException {
@@ -96,7 +96,7 @@ public class AccountServiceImpl implements AccountService {
 		
 	}
 
-	/* (”ñ Javadoc)
+	/* (ï¿½ï¿½ Javadoc)
 	 * @see com.plat4u.ghost.account.biz.service.AccountService#updatePassword(com.plat4u.ghost.account.biz.entity.Account)
 	 */
 	public Account updatePassword(Account account) throws DuplicateException {

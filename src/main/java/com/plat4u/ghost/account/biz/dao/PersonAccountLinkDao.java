@@ -20,7 +20,7 @@ package com.plat4u.ghost.account.biz.dao;
 
 import com.plat4u.ghost.account.biz.entity.PersonAccountLink;
 
-/**
+/** 
  * PersonAccountLinkDao
  *
  * @author plat4u.com

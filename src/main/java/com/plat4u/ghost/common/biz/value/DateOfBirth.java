@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 plat4u.com
+  * Copyright 2017 plat4u.com
  * 
  * This file is part of ghost.
  *
@@ -57,7 +57,7 @@ public class DateOfBirth implements Serializable {
 	}
 	
 	/**
-	 * format pattern "Gy”NMŒŽd“ú"
+	 * format pattern "Gyï¿½NMï¿½ï¿½dï¿½ï¿½"
 	 * @return
 	 */
 	public String japaneseFormat() {
