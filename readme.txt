@@ -9,4 +9,5 @@ jenkins compile test4.
 jenkins clean test.
 jenkins clean compile test.
 jenkins clean install test.
+jenkins clean install test2.
  
