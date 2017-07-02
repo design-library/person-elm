@@ -11,4 +11,4 @@ jenkins clean compile test.
 jenkins clean install test.
 jenkins clean install test2. ...success.
 jenkins clean compile test.
- 
+jenkins shell test.
