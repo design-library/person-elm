@@ -9,3 +9,4 @@ source /src/test/resources/META-INF/use_to_utest.sql
 EOF
 
 echo "COMPLEATE!"
+

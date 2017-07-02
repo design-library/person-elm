@@ -67,3 +67,4 @@ CREATE TABLE IF NOT EXISTS gate.Person_Account_Link (
   registration_date DateTime NOT NULL,
   PRIMARY KEY (id)
   )ENGINE = InnoDB;
+
