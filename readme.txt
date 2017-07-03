@@ -15,3 +15,4 @@ jenkins shell test.
 jenkins test test.
 jenkins compile test.
 jenkins compile test2.
+jenkins compile test3.
