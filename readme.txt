@@ -14,3 +14,4 @@ jenkins clean compile test.
 jenkins shell test.
 jenkins test test.
 jenkins compile test.
+jenkins compile test2.
