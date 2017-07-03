@@ -18,14 +18,6 @@
  */
 package com.plat4u.ghost.account.web.controller;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.Properties;
-
 import org.junit.BeforeClass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -52,53 +44,6 @@ public class ControllerTest {
 	
 	@BeforeClass
 	public static void init() throws Exception {
-		
-		String file = "src/test/resources/META-INF/jdbc.properties";
-		Properties prop = new Properties();
-		InputStream is = new FileInputStream(file);
-		prop.load(is);
-		is.close();
-		
-		String driverClassName = prop.getProperty("jdbc.driverClassName");
-		String url = prop.getProperty("jdbc.url");
-		String username = prop.getProperty("jdbc.username");
-		String password = prop.getProperty("jdbc.password");
-		
-		Connection con = null;
-		PreparedStatement ps = null;
-		/*
-		try {
-			Class.forName(driverClassName).newInstance();
-			con = DriverManager.getConnection(url + "&user=" + username + "&password=" + password);
-			
-			String queryPh = "delete from password_history";
-			ps = con.prepareStatement(queryPh);
-			ps.executeUpdate();
-			ps.close();
-			
-			String queryA = "delete from account";
-			ps = con.prepareStatement(queryA);
-			ps.executeUpdate();
-			ps.close();
-			
-			String queryPnh = "delete from person_history";
-			ps = con.prepareStatement(queryPnh);
-			ps.executeUpdate();
-			ps.close();
-			
-			String queryP = "delete from person";
-			ps = con.prepareStatement(queryP);
-			ps.executeUpdate();
-			ps.close();
-		} catch(SQLException e) {
-			throw e;
-			
-		} finally {
-			if (con != null) {
-				con.close();
-			}
-		}
-			*/
 	}
 
 }
