@@ -66,6 +66,7 @@ public class ControllerTest {
 		
 		Connection con = null;
 		PreparedStatement ps = null;
+		/*
 		try {
 			Class.forName(driverClassName).newInstance();
 			con = DriverManager.getConnection(url + "&user=" + username + "&password=" + password);
@@ -89,7 +90,6 @@ public class ControllerTest {
 			ps = con.prepareStatement(queryP);
 			ps.executeUpdate();
 			ps.close();
-			
 		} catch(SQLException e) {
 			throw e;
 			
@@ -98,6 +98,7 @@ public class ControllerTest {
 				con.close();
 			}
 		}
+			*/
 	}
 
 }
