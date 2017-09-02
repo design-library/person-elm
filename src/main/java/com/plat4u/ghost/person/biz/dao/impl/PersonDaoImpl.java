@@ -40,7 +40,7 @@ public class PersonDaoImpl implements com.plat4u.ghost.person.biz.dao.PersonDao 
 	@PersistenceContext
     EntityManager entityManager;
 	
-	/* (�� Javadoc)
+	/* (non Javadoc)
 	 * @see com.plat4u.ghost.person.biz.dao.PersonDao#findOne(com.plat4u.ghost.person.biz.entity.Person)
 	 */
 	public Person findOne(Person person) {
@@ -53,7 +53,7 @@ public class PersonDaoImpl implements com.plat4u.ghost.person.biz.dao.PersonDao 
 		return personEntityRtn;
 	}
 
-	/* (�� Javadoc)
+	/* (non Javadoc)
 	 * @see com.plat4u.ghost.person.biz.dao.PersonDao#insert(com.plat4u.ghost.person.biz.entity.Person)
 	 */
 	public Person insert(Person person) throws DuplicateException {
@@ -76,7 +76,7 @@ public class PersonDaoImpl implements com.plat4u.ghost.person.biz.dao.PersonDao 
 		return personEntityRtn;
 	}
 
-	/* (�� Javadoc)
+	/* (non Javadoc)
 	 * @see com.plat4u.ghost.person.biz.dao.PersonDao#update(com.plat4u.ghost.person.biz.entity.Person)
 	 */
 	public Person update(Person person) {

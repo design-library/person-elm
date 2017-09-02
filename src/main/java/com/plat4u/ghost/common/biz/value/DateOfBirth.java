@@ -57,7 +57,7 @@ public class DateOfBirth implements Serializable {
 	}
 	
 	/**
-	 * format pattern "Gy�NM��d��"
+	 * format pattern "Gy�NMnondnon"
 	 * @return
 	 */
 	public String japaneseFormat() {

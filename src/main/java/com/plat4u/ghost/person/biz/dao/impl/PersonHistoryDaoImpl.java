@@ -41,7 +41,7 @@ public class PersonHistoryDaoImpl implements PersonHistoryDao {
 	@PersistenceContext
     EntityManager entityManager;
 	
-	/* (�� Javadoc)
+	/* (non Javadoc)
 	 * @see com.plat4u.ghost.person.biz.dao.PersonHistoryDao#findOne(com.plat4u.ghost.person.biz.entity.PersonHistory)
 	 */
 	public PersonHistory findOne(PersonHistory personHistory) {
@@ -55,7 +55,7 @@ public class PersonHistoryDaoImpl implements PersonHistoryDao {
 		
 	}
 
-	/* (�� Javadoc)
+	/* (non Javadoc)
 	 * @see com.plat4u.ghost.person.biz.dao.PersonHistoryDao#insert(com.plat4u.ghost.person.biz.entity.PersonHistory)
 	 */
 	public PersonHistory insert(PersonHistory personHistory) throws DuplicateException {

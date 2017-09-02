@@ -41,7 +41,7 @@ public class PasswordHistoryDaoImpl implements PasswordHistoryDao {
 	@PersistenceContext
     EntityManager entityManager;
 	
-	/* (�� Javadoc)
+	/* (non Javadoc)
 	 * @see com.plat4u.ghost.account.biz.dao.PasswordHistoryDao#findByAccountIdAndPassword(com.plat4u.ghost.account.biz.entity.PasswordHistory)
 	 */
 	public PasswordHistory findByAccountIdAndPassword(PasswordHistory passwordHistory) {
@@ -58,7 +58,7 @@ public class PasswordHistoryDaoImpl implements PasswordHistoryDao {
 		
 	}
 
-	/* (�� Javadoc)
+	/* (non Javadoc)
 	 * @see com.plat4u.ghost.account.biz.dao.PasswordHistoryDao#insert(com.plat4u.ghost.account.biz.entity.PasswordHistory)
 	 */
 	public PasswordHistory insert(PasswordHistory passwordHistory) throws DuplicateException {

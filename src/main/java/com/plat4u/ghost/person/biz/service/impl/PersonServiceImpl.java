@@ -50,7 +50,7 @@ public class PersonServiceImpl implements PersonService {
 	@Autowired
 	private PersonHistoryDao personHistoryDao;
 	
-	/* (�� Javadoc)
+	/* (non Javadoc)
 	 * @see com.plat4u.ghost.person.biz.service.PersonService#findOne(com.plat4u.ghost.person.biz.entity.Person)
 	 */
 	public Person findOne(Person person) throws NotFoundException {
@@ -67,7 +67,7 @@ public class PersonServiceImpl implements PersonService {
 		
 	}
 
-	/* (�� Javadoc)
+	/* (non Javadoc)
 	 * @see com.plat4u.ghost.person.biz.service.PersonService#create(com.plat4u.ghost.person.biz.entity.Person)
 	 */
 	public Person create(Person person) throws DuplicateException {
@@ -82,7 +82,7 @@ public class PersonServiceImpl implements PersonService {
 		
 	}
 
-	/* (�� Javadoc)
+	/* (non Javadoc)
 	 * @see com.plat4u.ghost.person.biz.service.PersonService#update(com.plat4u.ghost.person.biz.entity.Person)
 	 */
 	public Person update(Person person) throws DuplicateException {

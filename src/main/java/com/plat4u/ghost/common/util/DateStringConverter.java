@@ -31,7 +31,7 @@ import org.apache.commons.beanutils.Converter;
  */
 public class DateStringConverter implements Converter {
 
-	/* (�� Javadoc)
+	/* (non Javadoc)
 	 * @see org.apache.commons.beanutils.Converter#convert(java.lang.Class, java.lang.Object)
 	 */
 	public <T> T convert(Class<T> type, Object value) {

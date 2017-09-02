@@ -50,7 +50,7 @@ public class AccountServiceImpl implements AccountService {
 	@Autowired
 	private PasswordHistoryDao passwordHistoryDao;
 	
-	/* (�� Javadoc)
+	/* (non Javadoc)
 	 * @see com.plat4u.ghost.account.biz.service.AccountService#authenticate(com.plat4u.ghost.account.biz.entity.Account)
 	 */
 	public Account authenticate(Account account) throws AuthenticationException {
@@ -75,7 +75,7 @@ public class AccountServiceImpl implements AccountService {
 		
 	}
 
-	/* (�� Javadoc)
+	/* (non Javadoc)
 	 * @see com.plat4u.ghost.account.biz.service.AccountService#create(com.plat4u.ghost.account.biz.entity.Account)
 	 */
 	public Account create(Account account) throws  DuplicateException {
@@ -96,7 +96,7 @@ public class AccountServiceImpl implements AccountService {
 		
 	}
 
-	/* (�� Javadoc)
+	/* (non Javadoc)
 	 * @see com.plat4u.ghost.account.biz.service.AccountService#updatePassword(com.plat4u.ghost.account.biz.entity.Account)
 	 */
 	public Account updatePassword(Account account) throws DuplicateException {
