@@ -31,7 +31,7 @@ import com.plat4u.ghost.person.biz.entity.Person;
 public interface PersonService {
 
 	/**
-	 * 
+	 * fidOne
 	 * @param person
 	 * @return
 	 * @throws NotFoundException
@@ -39,7 +39,7 @@ public interface PersonService {
 	public Person findOne(Person person) throws NotFoundException;
 	
 	/**
-	 * 
+	 * create
 	 * @param person
 	 * @return
 	 * @throws DuplicateException
@@ -47,7 +47,7 @@ public interface PersonService {
 	public Person create(Person person) throws DuplicateException;
 	
 	/**
-	 * 
+	 * update
 	 * @param person
 	 * @return
 	 * @throws DuplicateException
